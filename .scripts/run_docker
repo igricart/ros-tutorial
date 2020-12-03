@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker run -v $PWD:/project -w /project --rm -it python_ws
