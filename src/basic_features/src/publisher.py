@@ -14,7 +14,7 @@ def talker():
         rate.sleep()
 
 if __name__ == '__main__':
-    print("Inside main from publisher.py")
+    rospy.loginfo("Inside main from publisher.py")
     try:
         talker()
     except rospy.ROSInterruptException:

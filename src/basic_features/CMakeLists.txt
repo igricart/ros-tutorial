@@ -158,6 +158,8 @@ include_directories(
 catkin_install_python(PROGRAMS
   src/publisher.py
   src/subscriber.py
+  src/set_bool_service.py
+  src/set_bool_client.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
