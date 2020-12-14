@@ -7,6 +7,6 @@ class TestKF(unittest.TestCase):
         v = 2.3
 
         kf = KF(initial_x=x, initial_v=v)
-        self.assertAlmostEqual(kf.x[0], x)
-        self.assertAlmostEqual(kf.x[1], v)
+        self.assertAlmostEqual(kf.pos, x)
+        self.assertAlmostEqual(kf.vel, v)
         
