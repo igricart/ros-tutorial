@@ -22,6 +22,8 @@ real_xs = []
 real_vs = []
 
 for step in range(NUM_STEPS):
+    if step > 500:
+        real_v *= 0.9
     covs.append(kf.cov)
     mus.append(kf.mean)
     kf.predict(dt=DT)
