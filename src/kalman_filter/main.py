@@ -31,6 +31,7 @@ for step in range(NUM_STEPS):
     real_x = real_x + DT * real_v
 
     if step != 0 and step % MEAS_EVERY_STEPS == 0:
+        # Add random values around the mean to represent noise
         kf.update(meas_value=real_x + np.random.randn() * np.sqrt(meas_variance), meas_variance=meas_variance)
 
     real_xs.append(real_x)
