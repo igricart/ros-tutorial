@@ -7,16 +7,6 @@
     <arg name="headless" default="false"/>
     <arg name="debug" default="false"/>
 
-    <!-- Define Iris Lama parameters -->
-    <arg name="scan_topic" default="/scan"/>
-    <arg name="rosbag" />
-    <arg name="particles" default="30"/>
-    <arg name="d_thresh"  default="0.5"/>
-    <arg name="a_thresh"  default="0.5"/>
-    <arg name="mrange"    default="20"/>
-    <arg name="threads"   default="4"/>
-    <arg name="use_compression" default="false"/>
-
     <!-- Open gazebo world -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <!-- <arg name="world_name" value="$(find turtlebot_gazebo)/world/playground.world"/> -->
@@ -27,6 +17,9 @@
         <arg name="use_sim_time" value="$(arg use_sim_time)"/>
         <arg name="headless" value="$(arg headless)"/>
       </include>
+
+    <!-- Add iris_lama_ros -->
+    <include file="$(find turtlebot_gazebo)/launch/iris_lama_ros.launch"/>
 
     <!-- Load description -->
     <param name="robot_description"
@@ -43,15 +36,7 @@
         <param name="publish_frequency" type="double" value="30.0" />
     </node>
 
-    <!-- Mapping -->
-    <node pkg="iris_lama_ros" name="slam2d_ros" type="slam2d_ros" output="screen" required="true">
-        <param name="scan_topic" value="$(arg scan_topic)"/>
-        <!-- <param name="rosbag"     value="$(arg rosbag)"/> -->
-        <param name="d_thresh"  value="$(arg d_thresh)"/>
-        <param name="a_thresh"  value="$(arg a_thresh)"/>
-        <param name="mrange"    value="$(arg mrange)"/>
-        <param name="use_compression" value="$(arg use_compression)"/>
-        <param name="create_summary"     value="true"/>
-        <param name="map_publish_period" value="30" />
-    </node>
+    <!-- Map server
+    <arg name="map_file" default="$(find turtlebot_gazebo)/world/my_map.yaml"/>
+    <node pkg="map_server" name="map_server" type="map_server" args="$(arg map_file)"/> -->
 </launch>
