@@ -4,12 +4,14 @@ project(behavior_tree)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-list(APPEND CMAKE_PREFIX_PATH .)
-# set(CMAKE_PREFIX_PATH ./lib/)
-find_package(BehaviorTreeV3)
-find_package(catkin REQUIRED)
+find_package(catkin REQUIRED
+  COMPONENTS roscpp behaviortree_cpp_v3 
+)
 
-catkin_package()
+catkin_package(
+    CATKIN_DEPENDS roscpp behaviortree_cpp_v3
+)
+
 include_directories(include ${catkin_INCLUDE_DIRS})
 add_executable(${PROJECT_NAME} "src/hello_BT.cpp")
-target_link_libraries(${PROJECT_NAME} BT::behaviortree_cpp_v3)
+target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
